@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TheraView"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Scenes"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="6"
+        android:rowCount="2"
+        android:layout_gravity="center">
+        <CheckBox
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check_outer_space"
+            android:buttonTint="@color/lightskyblue"/>
+
+        <ImageView
+            android:background="@drawable/outerspace"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:text="Space"
+            android:textColor="@color/black"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="5dp"
+            android:typeface="serif"/>
+
+        <CheckBox
+            android:layout_column="3"
+            android:layout_row="0"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check_forest"
+            android:buttonTint="@color/lightskyblue"/>
+
+        <ImageView
+            android:background="@drawable/forest"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:text="Forest"
+            android:textColor="@color/black"
+            android:layout_column="5"
+            android:layout_row="0"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="5dp"
+            android:typeface="serif"/>
+        <CheckBox
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check_train"
+            android:buttonTint="@color/lightskyblue"/>
+
+        <ImageView
+            android:background="@drawable/train"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:text="Train"
+            android:textColor="@color/black"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="5dp"
+            android:typeface="serif"/>
+        <CheckBox
+            android:layout_column="3"
+            android:layout_row="1"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/check_beach"
+            android:buttonTint="@color/lightskyblue"/>
+
+        <ImageView
+            android:background="@drawable/beach"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_column="4"
+            android:layout_row="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:text="Beach"
+            android:textColor="@color/black"
+            android:layout_column="5"
+            android:layout_row="1"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="5dp"
+            android:typeface="serif"/>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:background="@drawable/home_background"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="300dp"
+            android:text="Start"
+            android:background="@drawable/btn_style1"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            />
+        <TextView
+            android:id="@+id/text_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How to practice biofeedback?"
+            android:gravity="center"
+            android:layout_marginTop="20dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

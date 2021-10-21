@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.vrbiofeedback">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".Base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/launch_icon"
+        android:label="TheraView"
+        android:roundIcon="@drawable/launch_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:largeHeap="true">
+        <activity android:name=".Activity.VRActivity">
+        </activity>
+        <activity android:name=".Activity.BlueToothConnect" />
+        <activity android:name=".Activity.SetUpActivity" />
+        <activity android:name=".Activity.AccountMissActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

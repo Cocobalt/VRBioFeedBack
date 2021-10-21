@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AccountMissActivity"
+    android:orientation="vertical"
+    android:background="@color/teal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Oops"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_back"
+        android:layout_marginLeft="30dp"/>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/missing_photo_icon_20"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:typeface="serif"
+            android:layout_gravity="center"
+            android:text="One or more settings are missing for your account, please complete settings in Account Page"
+            android:textSize="23dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_account"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="View Account"
+        android:textSize="18dp"
+        android:typeface="serif"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/btn_style1"/>
+
+</LinearLayout>
