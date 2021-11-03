@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/21-22/SRT/VRBioFeedBack/app/src/main/res/layout/activity_blue_tooth_connect.xml" value="0.20677083333333332" />
+        <entry key="..\:/21-22/SRT/VRBioFeedBack/app/src/main/res/layout/activity_set_up.xml" value="0.1" />
+        <entry key="..\:/21-22/SRT/VRBioFeedBack/app/src/main/res/layout/activity_show_data.xml" value="0.31979166666666664" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

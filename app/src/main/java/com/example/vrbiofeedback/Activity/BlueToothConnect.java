@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vrbiofeedback.Globals.GlobalBluetoothDevice;
 import com.example.vrbiofeedback.R;
 import com.neurosky.connection.ConnectionStates;
 import com.neurosky.connection.DataType.BodyDataType;
@@ -38,6 +39,7 @@ public class BlueToothConnect extends AppCompatActivity {
     public static BluetoothAdapter mBluetoothAdapter;
     public static BluetoothDevice mBluetoothDevice;
     public static int currentState = 0;
+    private static boolean ifConnected = false;
 
     private static final int MSG_UPDATE_BAD_PACKET = 1001;
     private static final int MSG_UPDATE_STATE = 1002;
@@ -61,6 +63,9 @@ public class BlueToothConnect extends AppCompatActivity {
 
         if(SearchDevice()){
             ConnectToBlueTooth();
+            image_connect.setImageResource(R.drawable.right);
+            text_connect.setText("Find Device BMD101!");
+            btn_next.setVisibility(View.VISIBLE);
         }
         else{
             image_connect.setImageResource(R.drawable.incorrect);
@@ -87,170 +92,20 @@ public class BlueToothConnect extends AppCompatActivity {
         for(BluetoothDevice device: pairedDevices){
             if(device.getName().equals("BT04-A")){
                 mBluetoothDevice=device;
-                deviceName = "BT04-A";
-                return true;
+               deviceName = "BT04-A";
+               ifConnected = true;
+               return true;
             }
         }
         return false;
     }
 
-    public void ConnectToBlueTooth(){
+    public void ConnectToBlueTooth() {
+
         BluetoothDevice bd = mBluetoothAdapter.getRemoteDevice(mBluetoothDevice.getAddress());
-
-        createStreamReader(bd);
-        tgStreamReader.connectAndStart();
+        GlobalBluetoothDevice d = (GlobalBluetoothDevice) getApplication();
+        d.setBluetoothDevice(bd);
     }
-
-    public void createStreamReader(BluetoothDevice bd){
-
-        if(tgStreamReader == null){
-            // Example of constructor public TgStreamReader(BluetoothDevice mBluetoothDevice,TgStreamHandler tgStreamHandler)
-            tgStreamReader = new TgStreamReader(bd,callback);
-            tgStreamReader.startLog();
-        }else{
-
-            //setTgStreamHandler, you can change the data handler by this function
-            tgStreamReader.setTgStreamHandler(callback);
-        }
-    }
-
-    public TgStreamHandler callback = new TgStreamHandler() {
-
-        @Override
-        public void onStatesChanged(int connectionStates) {
-            // TODO Auto-generated method stub
-            Log.d("AutoConnect", "connectionStates change to: " + connectionStates);
-            currentState  = connectionStates;
-            switch (connectionStates) {
-                case ConnectionStates.STATE_CONNECTED:
-                    System.out.println("Connected");
-                    Log.v("states","Connected");
-                    //获取当前时间
-                    break;
-                case ConnectionStates.STATE_WORKING:
-
-                    Log.v("states","Working");
-                    System.out.println("Subscribe");
-                    //每次进入工作状态时将前一次的记录清空
-                    LinkDetectedHandler.sendEmptyMessageDelayed(1234, 5000);
-                    break;
-                case ConnectionStates.STATE_GET_DATA_TIME_OUT:
-                    //get data time out
-                    Log.v("states","STATE_GET_DATA_TIME_OUT");
-                    break;
-                case ConnectionStates.STATE_COMPLETE:
-                    //read file complete
-                    Log.v("states","Complete");
-                    break;
-                case ConnectionStates.STATE_STOPPED:
-                    Log.v("states","Unsubscribe");
-                    System.out.println("Unsubscribe");
-                    break;
-                case ConnectionStates.STATE_DISCONNECTED:
-                    Log.v("states","Disconnect");
-                    System.out.println("Disconnect");
-
-                    break;
-                case ConnectionStates.STATE_ERROR:
-                    Log.v("states","Error");
-                    Log.d("AutoConnect","Connect error, Please try again!");
-                    break;
-                case ConnectionStates.STATE_FAILED:
-                    Log.v("states","Failed");
-                    Log.d("AutoConnect","Connect failed, Please try again!");
-                    break;
-            }
-            Message msg = LinkDetectedHandler.obtainMessage();
-            msg.what = MSG_UPDATE_STATE;
-            msg.arg1 = connectionStates;
-            LinkDetectedHandler.sendMessage(msg);
-
-        }
-
-        @Override
-        public void onRecordFail(int a) {
-            // TODO Auto-generated method stub
-            Log.e("AutoConnect","onRecordFail: " +a);
-
-        }
-
-        @Override
-        public void onChecksumFail(byte[] payload, int length, int checksum) {
-            // TODO Auto-generated method stub
-
-            badPacketCount ++;
-            Message msg = LinkDetectedHandler.obtainMessage();
-            msg.what = MSG_UPDATE_BAD_PACKET;
-            msg.arg1 = badPacketCount;
-            LinkDetectedHandler.sendMessage(msg);
-
-        }
-
-        @Override
-        public void onDataReceived(int datatype, int data, Object obj) {
-            // TODO Auto-generated method stub
-            Message msg = LinkDetectedHandler.obtainMessage();
-            msg.what = datatype;
-            msg.arg1 = data;
-            msg.obj = obj;
-            LinkDetectedHandler.sendMessage(msg);
-        }
-
-    };
-
-    @SuppressLint("HandlerLeak")
-    public Handler LinkDetectedHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-
-            System.out.println(msg.arg1);
-
-            if(msg.arg1==100&&flag==0){
-                image_connect.setImageResource(R.drawable.incorrect);
-                text_connect.setText("Can not connect to BMD101");
-            }
-            if(msg.arg1==2){
-                flag = 1;
-                image_connect.setImageResource(R.drawable.right);
-                text_connect.setText("Connected to BMD101");
-                btn_next.setVisibility(0);
-            }
-            switch (msg.what) {
-
-                case BodyDataType.CODE_RAW:
-                    System.out.println("CODE_RAW");
-
-                    break;
-                case BodyDataType.CODE_HEATRATE:
-                    System.out.println("CODE_HEATRATE");
-                    if (GlobalFlag != 0) {
-                        bpm = Integer.toString(msg.arg1);
-                        long currentSysTime = Calendar.getInstance().getTimeInMillis();
-                        rri = String.valueOf(currentSysTime - preSysTime);
-
-                    }
-                    preSysTime = Calendar.getInstance().getTimeInMillis();
-                    GlobalFlag = 1;
-                    break;
-
-                case BodyDataType.CODE_POOR_SIGNAL:
-                    System.out.println("CODE_POOR_SIGNAL");
-
-                    break;
-                case MSG_UPDATE_BAD_PACKET:
-                    System.out.println("MSG_UPDATE_BAD_PACKET");
-                    break;
-
-                case MSG_UPDATE_STATE:
-                    System.out.println("MSG_UPDATE_STATE");
-                    break;
-                default:
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    };
 
     private void listenElement() {
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -259,6 +114,16 @@ public class BlueToothConnect extends AppCompatActivity {
                 Intent intent = new Intent(BlueToothConnect.this,SetUpActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ifConnected) {
+                    Intent intent = new Intent(BlueToothConnect.this, ShowData.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
