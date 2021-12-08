@@ -34,4 +34,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.vr:sdk-videowidget:1.30.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+//    implementation 'com.google.vr:sdk-audio:1.200.0'
+//    implementation 'com.google.vr:sdk-base:1.200.0'
 }

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.vrbiofeedback.Activity.AccountMissActivity;
 import com.example.vrbiofeedback.Activity.SetUpActivity;
+import com.example.vrbiofeedback.Activity.VRActivity;
 import com.example.vrbiofeedback.Base.MyApplication;
 import com.example.vrbiofeedback.R;
 import com.example.vrbiofeedback.Utils.CheckString;
@@ -113,17 +114,19 @@ public class HomeFragment extends Fragment {
         });
         btn_start.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                if(CheckString.isEmpty(MyApplication.getUserBR())||CheckString.isEmpty(MyApplication.getUserID())){
-                    Intent intent = new Intent(getActivity(), AccountMissActivity.class);
-                    startActivity(intent);
-                }
-                else if(CheckString.isEmpty(MyApplication.getScene())){
-                    Toast.makeText(c, "Please select a scene", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Intent intent = new Intent(getActivity(), SetUpActivity.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getActivity(), VRActivity.class);
+                startActivity(intent);
+//                if(CheckString.isEmpty(MyApplication.getUserBR())||CheckString.isEmpty(MyApplication.getUserID())){
+//                    Intent intent = new Intent(getActivity(), AccountMissActivity.class);
+//                    startActivity(intent);
+//                }
+//                else if(CheckString.isEmpty(MyApplication.getScene())){
+//                    Toast.makeText(c, "Please select a scene", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Intent intent = new Intent(getActivity(), SetUpActivity.class);
+//                    startActivity(intent);
+//                }
             }
 
         });
