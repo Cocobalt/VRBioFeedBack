@@ -37,7 +37,7 @@ public class VRActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         options.inputType = VrVideoView.Options.TYPE_STEREO_OVER_UNDER;
         try {
             //videoWidgetView.loadVideo(Uri.parse(videoPath), options);
-            videoWidgetView.loadVideoFromAsset("testVideo.mp4", options);
+            videoWidgetView.loadVideoFromAsset("ball.mp4", options);
         } catch (IOException e) {
             e.printStackTrace();
         }
